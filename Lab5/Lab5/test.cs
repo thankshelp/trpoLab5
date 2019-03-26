@@ -11,47 +11,58 @@ namespace Lab5
     class test
     {
         [TestCase]
-        public void Add()
-        {
-            functions f = new functions();
-            Assert.AreEqual(33, f.add(3, 30));
-        }
-
-        [TestCase]
-        public void Sub()
-        {
-            functions f = new functions();
-            Assert.AreEqual(33, f.sub(3, 30));
-        }
-
-        [TestCase]
         public void Con()
         {
             functions f = new functions();
-            Assert.AreEqual(15.24, f.con(6));
+            var ex = Assert.Throws<ArgumentException>(() => f.con(-6));
+            Assert.That(ex.Message, Is.EqualTo("Число должно быть > 0"));
+
+            Assert.DoesNotThrow(() => f.con(6));
+
+            var ed = Assert.Throws<ArgumentException>(() => f.con(double.MaxValue));
+            Assert.That(ed.Message, Is.EqualTo("Превышение максимального значения типа данных"));
+
+            Assert.DoesNotThrow(() => f.con(6));
+
         }
 
         [TestCase]
         public void Chet()
         {
             functions f = new functions();
-            Assert.AreEqual(true, f.chet(12));
+            Assert.IsTrue(f.chet(12));
+            Assert.IsFalse(f.chet(13));
+            Assert.IsTrue(f.chet(0));
+            Assert.IsFalse(f.chet(-13));
         }
 
         [TestCase]
         public void Max()
         {
             int[] m = { 0, 4, 10, 3, 7 };
+            int[] n = { -1, -4, -10, -3, -7 };
+            int[] p = { };
 
             functions f = new functions();
-            Assert.AreEqual(10, f.max(m));
+            var ex = Assert.Throws<ArgumentException>(() => f.max(p));
+            Assert.That(ex.Message, Is.EqualTo("Массив пуст"));
+
+            Assert.DoesNotThrow(() => f.max(m));
+            Assert.DoesNotThrow(() => f.max(n));
+
+
         }
 
         [TestCase]
         public void Ost()
         {
             functions f = new functions();
-            Assert.AreEqual(3, f.ost(7, 4));
+            var ex = Assert.Throws<ArgumentException>(() => f.ost(7, 0));
+            Assert.That(ex.Message, Is.EqualTo("Делитель должен быть не равен 0"));
+
+            Assert.DoesNotThrow(() => f.ost(7, 2));
+            Assert.DoesNotThrow(() => f.ost(7, -2));
+
         }
     }
 }

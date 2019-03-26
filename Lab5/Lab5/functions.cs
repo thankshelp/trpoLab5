@@ -8,37 +8,24 @@ namespace Lab5
 {
     public class functions
     {
-        public int add(int a, int b)
-        {
-            return a + b;
-        }
-
-        public int sub(int a, int b)
-        {
-            return a - b;
-        }
-
         public double con(double a)
         {
+            if (a >= double.MaxValue) throw new ArgumentException("Превышение максимального значения типа данных");
+            if (a <= 0) throw new ArgumentException("Число должно быть > 0");
           return a * 2.54;
-            
+           
         }
 
         public bool chet(int a)
         {
-            if (a % 2 == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (a % 2 == 0) ? true : false;
         }
 
         public int max(int[] m)
         {
-            int max = 0;
+            if (m.Length == 0) throw new ArgumentException("Массив пуст");
+
+            int max = int.MinValue;
             for(int i = 0; i < 5; i++)
             {
                 if (m[i] > max)
@@ -49,6 +36,8 @@ namespace Lab5
 
         public int ost(int a, int b)
         {
+            if (b == 0) throw new ArgumentException("Делитель должен быть не равен 0");
+
             return a % b;
         }
 
