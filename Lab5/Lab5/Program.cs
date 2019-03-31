@@ -9,7 +9,11 @@ namespace Lab5
     class Program
     {
         static void Main(string[] args)
-        { 
+        {
+            int a = 7 % 2;
+
+            Console.WriteLine($"{a}");
+            Console.ReadKey();
         }
     }
 }

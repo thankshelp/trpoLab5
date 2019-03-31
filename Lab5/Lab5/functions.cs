@@ -34,7 +34,7 @@ namespace Lab5
             return max;
         }
 
-        public int ost(int a, int b)
+        public float ost(float a, float b)
         {
             if (b == 0) throw new ArgumentException("Делитель должен быть не равен 0");
 
